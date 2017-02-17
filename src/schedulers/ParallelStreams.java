@@ -15,12 +15,12 @@ public class ParallelStreams {
 
         observableBeers
                 .flatMap(beer -> Observable.just(beer)
-                               .subscribeOn(Schedulers.computation())  // new thread for each observable
-                               .map(beeer -> matureBeer(beeer))
+                           .subscribeOn(Schedulers.computation())  // replace computation() with newThread()
+                           .map(beeer -> matureBeer(beeer))
                  )
                 .subscribe(beer -> System.out.println("Subscriber got " +
-                                   beer.name + " on  " +
-                                   Thread.currentThread().getName())
+                               beer.name + " on  " +
+                               Thread.currentThread().getName())
                 );
 
 
